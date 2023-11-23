@@ -14,6 +14,10 @@ return [
     */
 
     'default' => env('MAIL_MAILER', 'smtp'),
+    'from' => ['address' => 'example@example.com', 'name' => 'App Name'],
+    
+    'debug' => env('MAIL_DEBUG', true),
+
 
     /*
     |--------------------------------------------------------------------------
@@ -34,6 +38,9 @@ return [
     */
 
     'mailers' => [
+        'mailtrap' => [
+            'transport' => 'mailtrap'
+        ],
         'smtp' => [
             'transport' => 'smtp',
             'url' => env('MAIL_URL'),
