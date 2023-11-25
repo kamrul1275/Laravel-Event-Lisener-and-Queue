@@ -25,18 +25,19 @@ class PodcastProcessed
     // }
 
 
-    public $data;
+    public $request;
+
+    public function __constructEmail ($request)
+    {
+       $this->request=$request;
+    }
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(Email $data)
-    {
-        $this->data = $data;
-    }
-
+  
 
     /**
      * Get the channels the event should broadcast on.

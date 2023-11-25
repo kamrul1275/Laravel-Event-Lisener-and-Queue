@@ -15,20 +15,20 @@ class SendPodcastNotification implements ShouldQueue
     /**
      * Create the event listener.
      */
-    use InteractsWithQueue;
-
-    public $tries = 5;
+    
 
 
-    public function __construct()
+    public $request;
+
+    public function __construct($request)
     {
-        //
+       $this->request=$request;
     }
 
     public function handle(PodcastProcessed $event): void
     {
-        $data = $event->data;
+        $request = $event->request;
 
-        Mail::to($data->email)->send(new WelcomeEmail($data));
+       
     }
 }

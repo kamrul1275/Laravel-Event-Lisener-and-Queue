@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Email;
 use Illuminate\Http\Request;
 use App\Events\PodcastProcessed;
+
+use App\Jobs\sendMail;
 use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
@@ -22,13 +24,16 @@ class HomeController extends Controller
     // $data->save();
 
     
-    $data = Email::create($request->all());
+     Email::create($request->all());
 
-    //event(new PodcastProcessed($data));
+   
+    dispatch(new sendMail((object)$request->all()));
 
     //dd(PodcastProcessed::dispatch($data));
  
-    PodcastProcessed::dispatch($data);
+  
+
+
     return redirect()->back()->with('success', 'Insert Successfully....');
     
 }
